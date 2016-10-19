@@ -14,7 +14,7 @@ def main(hostname, token, interface):
     addresses = netifaces.ifaddresses(interface)
     ipv6 = addresses[netifaces.AF_INET6][0]['addr']
     parameters = {'hostname': hostname, 'token': token, 'ipv6': ipv6}
-    response = requests.get('https://ipv6.dynv6.com/api/update?{}'.format(
+    response = requests.get('https://dynv6.com/api/update?{}'.format(
         urllib.parse.urlencode(parameters)))
     assert response.status_code == 200, response.content
 
