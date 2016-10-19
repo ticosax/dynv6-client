@@ -13,7 +13,7 @@ RUN apk --update-cache add python3 python3-dev gcc linux-headers musl-dev\
 
 RUN mkdir /tmp/requirements
 COPY requirements.txt /tmp/requirements.txt
-COPY client.py client.py
+COPY client.py ./client.py
 RUN pip install --no-compile --no-cache-dir -r /tmp/requirements.txt
 RUN apk del gcc linux-headers musl-dev
 ENTRYPOINT ["python", "client.py"]
