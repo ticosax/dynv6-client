@@ -13,8 +13,9 @@ import requests
 def main(hostname, token, interface):
     addresses = netifaces.ifaddresses(interface)
     ipv6 = addresses[netifaces.AF_INET6][0]['addr']
+    ipv4 = requests.get('https://api.ipify.org?format=json').json()['ip']
     parameters = {'hostname': hostname, 'token': token, 'ipv6': ipv6,
-                  'ipv4': 'auto'}
+                  'ipv4': ipv4}
     response = requests.get('https://dynv6.com/api/update?{}'.format(
         urllib.parse.urlencode(parameters)))
     assert response.status_code == 200, response.content
